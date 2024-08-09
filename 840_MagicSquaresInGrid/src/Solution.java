@@ -5,6 +5,15 @@ public class Solution {
     }
 
     private static int numMagicSquaresInside(int[][] grid) {
-        return 0;
+        int m = grid.length;
+        int n = grid[0].length;
+        int countMagic = 0;
+
+        return countMagic;
+    }
+
+    private static boolean isMagic(int[][] grid) {
+
+        return true;
     }
 }
