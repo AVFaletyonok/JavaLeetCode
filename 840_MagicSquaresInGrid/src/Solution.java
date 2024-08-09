@@ -6,8 +6,8 @@ public class Solution {
         int[][] wrongMatrix = new int[][] {{8}};
         System.out.println(numMagicSquaresInside(wrongMatrix));
 
-        int[][] magicMatrix5 = new int[][] {{5,5,5},{5,5,5},{5,5,5}};
-        System.out.println(numMagicSquaresInside(magicMatrix5));
+        int[][] wrongMatrix5 = new int[][] {{5,5,5},{5,5,5},{5,5,5}};
+        System.out.println(numMagicSquaresInside(wrongMatrix5));
     }
 
     private static int numMagicSquaresInside(int[][] grid) {
@@ -31,7 +31,7 @@ public class Solution {
         int expectSum = grid[iStart][jStart] + grid[iStart + 1][jStart + 1] + grid[iStart + 2][jStart + 2];
         if (expectSum != grid[iStart + 2][jStart] + grid[iStart + 1][jStart + 1] + grid[iStart][jStart + 2])
             result = 0;
-        // rows
+        // check rows sums
         for (int i = iStart; i < iMax && result == 1; i++) {
             int curSum = 0;
             for (int j = jStart; j < jMax; j++) {
@@ -39,7 +39,7 @@ public class Solution {
             }
             if (curSum != expectSum) result = 0;
         }
-        // columns
+        // check columns sums
         for (int j = jStart; j < jMax && result == 1; j++) {
             int curSum = 0;
             for (int i = iStart; i < iMax; i++) {
