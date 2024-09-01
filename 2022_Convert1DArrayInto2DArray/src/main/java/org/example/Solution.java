@@ -1,17 +1,25 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Arrays;
+
 public class Solution {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        int[] array1D = new int[] { 1, 2, 3, 4 };
+        int[][] array2D = construct2DArray(array1D, 2, 2);
+        System.out.println(Arrays.toString(array1D));
+        System.out.println(Arrays.toString(array2D));
+    }
+
+    public static int[][] construct2DArray(int[] original, int m, int n) {
+        if (m < 1 || n < 1 || m * n != original.length) return new int[0][0];
+        int[][] resultArray = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                resultArray[i][j] = original[i * n + j];
+            }
         }
+        return resultArray;
     }
 }
