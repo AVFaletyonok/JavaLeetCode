@@ -20,6 +20,30 @@ public class Solution {
     }
 
     public static boolean validPath(int n, int[][] edges, int source, int destination) {
-        return false;
+        Map<Integer,List<Integer>> availablePaths = new HashMap<>(n);
+        int len = edges.length;
+        for (int i = 0; i < len; i++) {
+            if (!availablePaths.containsKey(edges[i][0]))
+                availablePaths.put(edges[i][0], new ArrayList<>());
+            if (!availablePaths.containsKey(edges[i][1]))
+                availablePaths.put(edges[i][1], new ArrayList<>());
+            availablePaths.get(edges[i][0]).add(edges[i][1]);
+            availablePaths.get(edges[i][1]).add(edges[i][0]);
+        }
+
+        Set<Integer> availableVertices = new HashSet<>(1);
+        availableVertices.add(source);
+
+        while (!availableVertices.isEmpty() && !availableVertices.contains(destination)) {
+            Set<Integer> newAvailableVertices = new HashSet<>();
+            for(Integer vertice : availableVertices) {
+                if (availablePaths.containsKey(vertice)) {
+                    newAvailableVertices.addAll(availablePaths.get(vertice));
+                    availablePaths.remove(vertice);
+                }
+            }
+            availableVertices = newAvailableVertices;
+        }
+        return availableVertices.contains(destination);
     }
 }
